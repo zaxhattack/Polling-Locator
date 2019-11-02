@@ -10,7 +10,7 @@ Next, clone the repository
 
 Navigate to the directory and install express.
 
-    npm install expres --save --save-exact
+	npm install expres --save --save-exact
 
 Next, install dotenv.
 
@@ -18,4 +18,8 @@ Next, install dotenv.
 
 Within the root directory, create a file named *.env* with the following content
 
-    CIVIC_KEY=<paste google civic api key>
+	CIVIC_KEY=<paste google civic api key>
+
+To run, navigate to the root directory and run
+
+	node index.js
