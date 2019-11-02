@@ -10,7 +10,7 @@ Next, clone the repository
 
 Navigate to the directory and install express.
 
-    npm install expres --save
+    npm install expres --save --save-exact
 
 Next, install dotenv.
 
