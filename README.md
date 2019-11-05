@@ -22,4 +22,4 @@ Within the root directory, create a file named *.env* with the following content
 
 To run, navigate to the root directory and run
 
-	node index.js
+	node app.js
