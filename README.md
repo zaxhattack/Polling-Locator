@@ -14,7 +14,11 @@ Navigate to the directory and install express.
 
 Next, install dotenv.
 
-	npm install dotenv
+	npm install dotenv --save --save-exact
+
+Finally, install request.
+
+	npm install request --save-exact
 
 Within the root directory, create a file named *.env* with the following content
 
