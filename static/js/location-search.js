@@ -4,6 +4,7 @@ window.addEventListener('load', function(){
         event.preventDefault();
         if(form.checkValidity()){
             getReps();
+            getVotingLocations();
         }
         form.classList.add('was-validated');
     });
@@ -31,4 +32,25 @@ function getReps(){
             alert(err);
         });
     }
+}
+
+function getVotingLocations(){
+    let form = document.getElementById("locationForm");
+    let params = new URLSearchParams(new FormData(form));
+    
+    fetch(`/locations?${params.toString()}`)
+    .then(res => {
+        try{
+            return res.json();
+        }catch(e){
+            console.error("Error in getVotingLocations(): ", e);
+            return JSON.parse('{"error": "Could not get voting locations"}');
+        }
+    })
+    .then(data => {
+        console.log("Recieved: ", data);
+    })
+    .catch(err => {
+        alert(err);
+    });
 }
