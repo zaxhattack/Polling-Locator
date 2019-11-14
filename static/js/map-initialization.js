@@ -16,6 +16,7 @@ window.addEventListener("resize", () => map.getViewPort().resize());
 
 var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 var ui = H.ui.UI.createDefault(map, defaultLayers);
+
 var votingLocGroup = new H.map.Group();
 votingLocGroup.addEventListener("tap", (evt) => {
     map.setCenter(evt.target.getGeometry());
