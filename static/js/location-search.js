@@ -119,7 +119,7 @@ function populateVotingLocations(data){
         }
         return;
     }
-    addLocationToMap(jsonData.normalizedInput, true);
+    addLocationToMap(jsonData.normalizedInput, true, false);
     
     if(jsonData.hasOwnProperty("earlyVoteSites")){
         let earlyVotingLocations = jsonData.earlyVoteSites;
@@ -166,50 +166,35 @@ function addLocationToMap(item, isHome, updateCenter){
     };
     
     geocoder.geocode(geocodingParams, (response) => {
-        if(isHome)
-            setHome(response);
-        else
-            addToMap(response, `${item.address.locationName}`, updateCenter);
+            let name;
+            if(isHome)
+                name = "Your Address";
+            else
+                name = `${item.address.locationName}`;
+            
+            addToMap(response, name, isHome, updateCenter);
     });
 }
 
-function addToMap(result, name, updateCenter){
+function addToMap(result, name, isHome, updateCenter){
     let locations = result.response.view[0].result;
     for(let i=0; i<locations.length; i++){
         let position = {
             lat: locations[i].location.displayPosition.latitude,
             lng: locations[i].location.displayPosition.longitude  
         };
-
         let marker = new H.map.Marker(position);
-        marker.setData(`<b>${name}</b><div>${locations[i].location.address.label}</div>`);
+        marker.setData(`<b>${name}</b><div>${locations[0].location.address.label}</div>`);
+        if(isHome){  
+            marker.setIcon(window.homeIcon);
+        }
         window.votingLocGroup.addObject(marker);
     }
-    if(updateCenter)
-        window.map.setCenter(window.votingLocGroup.getBoundingBox().getCenter());
-}
-
-function setHome(result){
-    let locations = result.response.view[0].result;
-    let position = {
-        lat: locations[0].location.displayPosition.latitude,
-        lng: locations[0].location.displayPosition.longitude
-    };
-    
-    if(!window.homePoint){
-        window.homePoint = new H.map.Marker(position, {icon: window.homeIcon});
-        window.homePoint.addEventListener("tap", (evt) => {
-            let bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {content: evt.target.getData()});
-            window.ui.addBubble(bubble);
-        
-            bubble.open();
+    if(updateCenter){
+        window.map.getViewModel().setLookAtData({
+            bounds: window.votingLocGroup.getBoundingBox()
         });
-        window.map.addObject(homePoint);
-    }else{
-        window.homePoint.setGeometry(position);
     }
-    
-    window.homePoint.setData(`<b>Your Address</b><div>${locations[0].location.address.label}</div>`);
 }
 
 function geocodeError(error){
