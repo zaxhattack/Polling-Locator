@@ -36,7 +36,7 @@ function getReps(){
                 items[i].addEventListener("keyup", function(e){
                     if(e.keyCode === 13){
                         e.preventDefault();
-                        copyText(items[i]);
+                        accessibleAction(items[i]);
                     }
                 });
             }
@@ -71,7 +71,7 @@ function getVotingLocations(){
             items[i].addEventListener("keyup", function(e){
                 if(e.keyCode === 13){
                     e.preventDefault();
-                    copyText(items[i]);
+                    accessibleAction(items[i]);
                 }
             });
         }
@@ -111,8 +111,8 @@ function populateRepresentatives(data){
         singleRep.innerHTML = `
         <h5 class="card-title mb-0">${repName}</h5>
         <p class="mb-0">${item.party}</p>
-        <p class="mb-0 copy-rep" tabindex="0"><a class="mb-0" href="tel:${item.phone}" tabindex="0">${item.phone}</a></p>
-        <p class="card-text copy-rep" tabindex="0"><a class="card-text" href="${item.link}">${item.link}</a></p>`;
+        <p class="mb-0 copy-rep" tabindex="0">${item.phone}</p>
+        <p class="card-text copy-rep" tabindex="0"><a class="card-text" href="${item.link}" target="_blank">${item.link}</a></p>`;
         
         container.appendChild(singleRep);
     });
@@ -167,11 +167,12 @@ function populateVotingLocations(data){
 function addLocationToList(parent, item, isEarlyVoting){
     let singleLocation = document.createElement("li");
     singleLocation.classList.add("list-group-item");
+    let address = item.address.line1 + ", " + item.address.city + ", " + item.address.state + ", " + item.address.zip;
     
     singleLocation.innerHTML = `<h5 class="card-title mb-0">${item.address.locationName}</h5>`;
     if(isEarlyVoting)
         singleLocation.innerHTML += "<p class='mb-0 font-italic'>Early Voting Location</p>";
-    singleLocation.innerHTML += `<p class="card-text copy-loc" tabindex="0">${item.address.line1}, ${item.address.city}, ${item.address.state} ${item.address.zip}</p>`;
+    singleLocation.innerHTML += `<p class="card-text copy-loc" tabindex="0"><a href="https://wego.here.com/search/${encodeURIComponent(address)}" target="_blank">${address}</a></p>`;
     
     parent.appendChild(singleLocation);
 }
@@ -226,7 +227,12 @@ function geocodeError(error){
     alert("Can't connect to Here WeGo Maps server");
 }
 
-function copyText(item){
+function accessibleAction(item){
+    if(item.firstChild.nodeName === "A"){
+        window.open(item.firstChild.getAttribute("href"), "_blank");
+        return;
+    }
+
     let currentRange;
     if(document.getSelection().rangeCount > 0){
         currentRange = document.getSelection().getRangeAt(0);
