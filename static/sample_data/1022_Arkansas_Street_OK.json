@@ -1,0 +1,80 @@
+{
+ "kind": "civicinfo#voterInfoResponse",
+ "election": {
+  "id": "4879",
+  "name": "Oklahoma Special Election",
+  "electionDay": "2019-11-12",
+  "ocdDivisionId": "ocd-division/country:us/state:ok"
+ },
+ "normalizedInput": {
+  "line1": "1022 Arkansas Street",
+  "city": "Norman",
+  "state": "OK",
+  "zip": "73071"
+ },
+ "pollingLocations": [
+  {
+   "address": {
+    "locationName": "ALAMEDA CHURCH OF CHRIST",
+    "line1": "801 E ALAMEDA ST.",
+    "city": "NORMAN",
+    "state": "OK",
+    "zip": "73071"
+   },
+   "notes": "",
+   "pollingHours": "7:00 AM - 7:00 PM",
+   "sources": [
+    {
+     "name": "Voting Information Project",
+     "official": true
+    }
+   ]
+  }
+ ],
+ "state": [
+  {
+   "name": "Oklahoma",
+   "electionAdministrationBody": {
+    "name": "Oklahoma State Election Board",
+    "electionInfoUrl": "http://www.ok.gov/elections",
+    "votingLocationFinderUrl": "https://services.okelections.us/voterSearch.aspx",
+    "ballotInfoUrl": "https://services.okelections.us/voterSearch.aspx",
+    "correspondenceAddress": {
+     "line1": "P.o. Box 53156",
+     "city": "Oklahoma City",
+     "state": "Oklahoma",
+     "zip": "73152-3156"
+    }
+   },
+   "local_jurisdiction": {
+    "name": "Cleveland County",
+    "electionAdministrationBody": {
+     "physicalAddress": {
+      "line1": "641 E ROBINSON ST STE 200",
+      "city": "NORMAN",
+      "state": "OK",
+      "zip": "73071-6656"
+     },
+     "electionOfficials": [
+      {
+       "officePhoneNumber": "(405) 366-0210",
+       "emailAddress": "info@clevelandcountyelectionboard.com"
+      }
+     ]
+    },
+    "sources": [
+     {
+      "name": "DemocracyWorks",
+      "official": false
+     }
+    ]
+   },
+   "sources": [
+    {
+     "name": "",
+     "official": false
+    }
+   ]
+  }
+ ]
+}
