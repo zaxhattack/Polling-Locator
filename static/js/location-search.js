@@ -28,6 +28,19 @@ function getReps(){
         .then(data => {
             populateRepresentatives(data);
         })
+        .then(() => {
+            return document.getElementsByClassName("copy-rep");
+        })
+        .then(items => {
+            for(let i=0; i<items.length; i++){
+                items[i].addEventListener("keyup", function(e){
+                    if(e.keyCode === 13){
+                        e.preventDefault();
+                        copyText(items[i]);
+                    }
+                });
+            }
+        })
         .catch(err => {
             alert(err);
         });
@@ -49,6 +62,19 @@ function getVotingLocations(){
     })
     .then(data => {
         populateVotingLocations(data);
+    })
+    .then(() => {
+        return document.getElementsByClassName("copy-loc");
+    })
+    .then(items => {
+        for(let i=0; i<items.length; i++){
+            items[i].addEventListener("keyup", function(e){
+                if(e.keyCode === 13){
+                    e.preventDefault();
+                    copyText(items[i]);
+                }
+            });
+        }
     })
     .catch(err => {
         alert(err);
@@ -85,8 +111,8 @@ function populateRepresentatives(data){
         singleRep.innerHTML = `
         <h5 class="card-title mb-0">${repName}</h5>
         <p class="mb-0">${item.party}</p>
-        <p class="mb-0" tabindex="0"><a class="mb-0" href="tel:${item.phone}" tabindex="0">${item.phone}</a></p>
-        <p class="card-text" tabindex="0"><a class="card-text" href="${item.link}">${item.link}</a></p>`;
+        <p class="mb-0 copy-rep" tabindex="0"><a class="mb-0" href="tel:${item.phone}" tabindex="0">${item.phone}</a></p>
+        <p class="card-text copy-rep" tabindex="0"><a class="card-text" href="${item.link}">${item.link}</a></p>`;
         
         container.appendChild(singleRep);
     });
@@ -145,7 +171,7 @@ function addLocationToList(parent, item, isEarlyVoting){
     singleLocation.innerHTML = `<h5 class="card-title mb-0">${item.address.locationName}</h5>`;
     if(isEarlyVoting)
         singleLocation.innerHTML += "<p class='mb-0 font-italic'>Early Voting Location</p>";
-    singleLocation.innerHTML += `<p class="card-text" tabindex="0">${item.address.line1}, ${item.address.city}, ${item.address.state} ${item.address.zip}</p>`;
+    singleLocation.innerHTML += `<p class="card-text copy-loc" tabindex="0">${item.address.line1}, ${item.address.city}, ${item.address.state} ${item.address.zip}</p>`;
     
     parent.appendChild(singleLocation);
 }
@@ -198,4 +224,24 @@ function addToMap(result, name, isHome, updateCenter){
 
 function geocodeError(error){
     alert("Can't connect to Here WeGo Maps server");
+}
+
+function copyText(item){
+    let currentRange;
+    if(document.getSelection().rangeCount > 0){
+        currentRange = document.getSelection().getRangeAt(0);
+        window.getSelection().removeRange(currentRange);
+    }else{
+        currentRange = false;
+    }
+    
+    let copyRange = document.createRange();
+    copyRange.selectNode(item);
+    window.getSelection().addRange(copyRange);
+    document.execCommand("copy");
+    
+    window.getSelection().removeRange(copyRange);
+    if(currentRange){
+        window.getSelection().addRange(currentRange);
+    }
 }
