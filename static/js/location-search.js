@@ -13,7 +13,7 @@ window.addEventListener('load', function(){
 function getReps(){
     let zipcode = document.getElementById("zipcode").value.trim();
     if(zipcode.length !== 5 || parseInt(zipcode) === NaN){
-        console.log(`Invalid zipcode: ${zipcode}`);
+        console.error(`Invalid zipcode: ${zipcode}`);
         return;
     }else{
         fetch(`/representatives?zipcode=${zipcode}`)
@@ -113,13 +113,20 @@ function populateVotingLocations(data){
         errormsg.innerHTML = `<p class="card-text">${errortxt}</p>`;
         
         container.appendChild(errormsg);
+        if(window.homePoint){
+            window.map.removeObject(window.homePoint);
+            window.homePoint = null;
+        }
         return;
     }
+    
+    addLocationToMap(jsonData.normalizedInput, true);
     
     if(jsonData.hasOwnProperty("earlyVoteSites")){
         let earlyVotingLocations = jsonData.earlyVoteSites;
         earlyVotingLocations.forEach((item) => {
             addLocationToList(container, item, true);
+            addLocationToMap(item, false);
         });
     }
     
@@ -127,6 +134,7 @@ function populateVotingLocations(data){
         let earlyVotingLocations = jsonData.pollingLocations;
         earlyVotingLocations.forEach((item) => {
             addLocationToList(container, item, false);
+            addLocationToMap(item, false);
         });
     }
 }
@@ -137,9 +145,74 @@ function addLocationToList(parent, item, isEarlyVoting){
     singleLocation.setAttribute("tabindex", "0");
     
     singleLocation.innerHTML = `<h5 class="card-title mb-0">${item.address.locationName}</h5>`;
-    if(!isEarlyVoting)
+    if(isEarlyVoting)
         singleLocation.innerHTML += "<p class='mb-0 font-italic'>Early Voting Location</p>";
     singleLocation.innerHTML += `<p class="card-text">${item.address.line1}, ${item.address.city}, ${item.address.state} ${item.address.zip}</p>`;
     
     parent.appendChild(singleLocation);
+}
+
+function addLocationToMap(item, isHome){
+    let geocoder = window.platform.getGeocodingService();
+    let searchTxt;
+    
+    if(isHome)
+        searchTxt = `${item.line1} ${item.city} ${item.state}`;
+    else
+        searchTxt = `${item.address.line1} ${item.address.city} ${item.address.state}`;
+        
+    let geocodingParams = {
+        searchText: searchTxt,
+        jsonattributes: 1
+    };
+    
+    geocoder.geocode(geocodingParams, (response) => {
+        if(isHome)
+            setHome(response);
+        else
+            addToMap(response, `${item.address.locationName}`);
+    });
+}
+
+function addToMap(result, name){
+    let locations = result.response.view[0].result;
+    for(let i=0; i<locations.length; i++){
+        let position = {
+            lat: locations[i].location.displayPosition.latitude,
+            lng: locations[i].location.displayPosition.longitude  
+        };
+
+        let marker = new H.map.Marker(position);
+        marker.setData(`<b>${name}</b><div>${locations[i].location.address.label}</div>`);
+        window.votingLocGroup.addObject(marker);
+    }
+}
+
+function setHome(result){
+    let locations = result.response.view[0].result;
+    let position = {
+        lat: locations[0].location.displayPosition.latitude,
+        lng: locations[0].location.displayPosition.longitude
+    };
+    
+    if(!window.homePoint){
+        window.homePoint = new H.map.Marker(position, {icon: window.homeIcon});
+        window.homePoint.addEventListener("tap", (evt) => {
+            let bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {content: evt.target.getData()});
+            window.ui.addBubble(bubble);
+        
+            bubble.open();
+        });
+        window.map.addObject(homePoint);
+    }else{
+        window.homePoint.setGeometry(position);
+    }
+    
+    window.homePoint.setData(`<b>Your Address</b><div>${locations[0].location.address.label}</div>`);
+    
+    window.map.setCenter(window.homePoint.getGeometry().getBoundingBox().getCenter());
+}
+
+function geocodeError(error){
+    alert("Can't connect to Here WeGo Maps server");
 }
