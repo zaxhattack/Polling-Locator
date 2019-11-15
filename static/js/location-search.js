@@ -119,7 +119,6 @@ function populateVotingLocations(data){
         }
         return;
     }
-    
     addLocationToMap(jsonData.normalizedInput, true);
     
     if(jsonData.hasOwnProperty("earlyVoteSites")){
@@ -131,10 +130,10 @@ function populateVotingLocations(data){
     }
     
     if(jsonData.hasOwnProperty("pollingLocations")){
-        let earlyVotingLocations = jsonData.pollingLocations;
-        earlyVotingLocations.forEach((item) => {
-            addLocationToList(container, item, false);
-            addLocationToMap(item, false);
+        let votingLocations = jsonData.pollingLocations;
+        votingLocations.forEach((item, index) => {
+            addLocationToList(container, item);
+            addLocationToMap(item, false, index===votingLocations.length-1);
         });
     }
 }
@@ -152,7 +151,7 @@ function addLocationToList(parent, item, isEarlyVoting){
     parent.appendChild(singleLocation);
 }
 
-function addLocationToMap(item, isHome){
+function addLocationToMap(item, isHome, updateCenter){
     let geocoder = window.platform.getGeocodingService();
     let searchTxt;
     
@@ -170,11 +169,11 @@ function addLocationToMap(item, isHome){
         if(isHome)
             setHome(response);
         else
-            addToMap(response, `${item.address.locationName}`);
+            addToMap(response, `${item.address.locationName}`, updateCenter);
     });
 }
 
-function addToMap(result, name){
+function addToMap(result, name, updateCenter){
     let locations = result.response.view[0].result;
     for(let i=0; i<locations.length; i++){
         let position = {
@@ -186,6 +185,8 @@ function addToMap(result, name){
         marker.setData(`<b>${name}</b><div>${locations[i].location.address.label}</div>`);
         window.votingLocGroup.addObject(marker);
     }
+    if(updateCenter)
+        window.map.setCenter(window.votingLocGroup.getBoundingBox().getCenter());
 }
 
 function setHome(result){
@@ -209,8 +210,6 @@ function setHome(result){
     }
     
     window.homePoint.setData(`<b>Your Address</b><div>${locations[0].location.address.label}</div>`);
-    
-    window.map.setCenter(window.homePoint.getGeometry().getBoundingBox().getCenter());
 }
 
 function geocodeError(error){
