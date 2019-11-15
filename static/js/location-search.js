@@ -85,8 +85,8 @@ function populateRepresentatives(data){
         singleRep.innerHTML = `
         <h5 class="card-title mb-0">${repName}</h5>
         <p class="mb-0">${item.party}</p>
-        <p class="mb-0"><a href="tel:${item.phone}">${item.phone}</a></p>
-        <p class="card-text"><a href="${item.link}">Website</a></p>`;
+        <p class="mb-0" tabindex="0"><a class="mb-0" href="tel:${item.phone}" tabindex="0">${item.phone}</a></p>
+        <p class="card-text" tabindex="0"><a class="card-text" href="${item.link}">${item.link}</a></p>`;
         
         container.appendChild(singleRep);
     });
@@ -141,12 +141,11 @@ function populateVotingLocations(data){
 function addLocationToList(parent, item, isEarlyVoting){
     let singleLocation = document.createElement("li");
     singleLocation.classList.add("list-group-item");
-    singleLocation.setAttribute("tabindex", "0");
     
     singleLocation.innerHTML = `<h5 class="card-title mb-0">${item.address.locationName}</h5>`;
     if(isEarlyVoting)
         singleLocation.innerHTML += "<p class='mb-0 font-italic'>Early Voting Location</p>";
-    singleLocation.innerHTML += `<p class="card-text">${item.address.line1}, ${item.address.city}, ${item.address.state} ${item.address.zip}</p>`;
+    singleLocation.innerHTML += `<p class="card-text" tabindex="0">${item.address.line1}, ${item.address.city}, ${item.address.state} ${item.address.zip}</p>`;
     
     parent.appendChild(singleLocation);
 }
