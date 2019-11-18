@@ -32,6 +32,7 @@ function getReps(){
             return document.getElementsByClassName("copy-rep");
         })
         .then(items => {
+            // Add support "clicking" links or copying text with the keyboard
             for(let i=0; i<items.length; i++){
                 items[i].addEventListener("keyup", function(e){
                     if(e.keyCode === 13){
@@ -67,6 +68,7 @@ function getVotingLocations(){
         return document.getElementsByClassName("copy-loc");
     })
     .then(items => {
+        // Add support "clicking" links or copying text with the keyboard
         for(let i=0; i<items.length; i++){
             items[i].addEventListener("keyup", function(e){
                 if(e.keyCode === 13){
@@ -83,6 +85,7 @@ function getVotingLocations(){
 
 function populateRepresentatives(data){
     let container = document.getElementById("representatives-container");
+    // Remove all existing representatives
     while(container.firstChild)
         container.removeChild(container.firstChild);
     
@@ -98,6 +101,7 @@ function populateRepresentatives(data){
     
     let reps = jsonData.results;
     
+    // Adds each representative to the "Representative" card
     reps.forEach((item, index) => {
         let singleRep = document.createElement("li");
         singleRep.classList.add("list-group-item");
@@ -120,8 +124,9 @@ function populateRepresentatives(data){
 
 function populateVotingLocations(data){
     let container = document.getElementById("locations-container");
+    // Remove all existing voting locations from the map
     window.votingLocGroup.removeAll();
-    
+    // Remove all existing voting locations from the container
     while(container.firstChild)
         container.removeChild(container.firstChild);
     
@@ -145,10 +150,13 @@ function populateVotingLocations(data){
         }
         return;
     }
+    
+    // Add the address the user entered onto the map
     addLocationToMap(jsonData.normalizedInput, true, false);
     
     if(jsonData.hasOwnProperty("earlyVoteSites")){
         let earlyVotingLocations = jsonData.earlyVoteSites;
+        // Add each early voting location to the list and map
         earlyVotingLocations.forEach((item) => {
             addLocationToList(container, item, true);
             addLocationToMap(item, false);
@@ -157,6 +165,7 @@ function populateVotingLocations(data){
     
     if(jsonData.hasOwnProperty("pollingLocations")){
         let votingLocations = jsonData.pollingLocations;
+        // Add each standard voting location to the list and map
         votingLocations.forEach((item, index) => {
             addLocationToList(container, item);
             addLocationToMap(item, false, index===votingLocations.length-1);
@@ -197,7 +206,7 @@ function addLocationToMap(item, isHome, updateCenter){
                 name = "Your Address";
             else
                 name = `${item.address.locationName}`;
-            
+            // Passes coordinates to add location to map
             addToMap(response, name, isHome, updateCenter);
     });
 }
@@ -217,6 +226,7 @@ function addToMap(result, name, isHome, updateCenter){
         window.votingLocGroup.addObject(marker);
     }
     if(updateCenter){
+        // Center map around all voting locations
         window.map.getViewModel().setLookAtData({
             bounds: window.votingLocGroup.getBoundingBox()
         });
@@ -228,11 +238,13 @@ function geocodeError(error){
 }
 
 function accessibleAction(item){
+    // Open link if the underlying element is an anchor tag
     if(item.firstChild.nodeName === "A"){
         window.open(item.firstChild.getAttribute("href"), "_blank");
         return;
     }
-
+    
+    // Copy the text if the underlying element is not an anchor tag
     let currentRange;
     if(document.getSelection().rangeCount > 0){
         currentRange = document.getSelection().getRangeAt(0);

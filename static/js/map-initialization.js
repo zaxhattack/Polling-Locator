@@ -23,6 +23,8 @@ var homeIcon = new H.map.Icon(homeMarkup);
 var homePoint;
 
 var votingLocGroup = new H.map.Group();
+
+// Event that opens InfoBubbles
 votingLocGroup.addEventListener("tap", (evt) => {
 
     let bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {content: evt.target.getData()});
