@@ -1,0 +1,98 @@
+{
+ "kind": "civicinfo#voterInfoResponse",
+ "election": {
+  "id": "4888",
+  "name": "Alabama State House District 74 Special General Election",
+  "electionDay": "2019-11-12",
+  "ocdDivisionId": "ocd-division/country:us/state:al/sldl:74"
+ },
+ "normalizedInput": {
+  "line1": "327 County Downs Road",
+  "city": "Montgomery",
+  "state": "AL",
+  "zip": "36109"
+ },
+ "pollingLocations": [
+  {
+   "address": {
+    "locationName": "303 - EASTMONT BAPTIST CHURCH",
+    "line1": "4505 ATLANTA HIGHWAY",
+    "city": "MONTGOMERY",
+    "state": "AL",
+    "zip": "36109"
+   },
+   "notes": "",
+   "pollingHours": "07:00 AM - 07:00 PM",
+   "sources": [
+    {
+     "name": "Voting Information Project",
+     "official": true
+    }
+   ]
+  }
+ ],
+ "contests": [
+  {
+   "type": "GENERAL",
+   "office": "STATE HOUSE 74",
+   "level": [
+    "administrativeArea1"
+   ],
+   "district": {
+    "name": "STATE HOUSE 74",
+    "scope": "stateLower",
+    "id": "74"
+   },
+   "sources": [
+    {
+     "name": "Voting Information Project",
+     "official": true
+    }
+   ]
+  }
+ ],
+ "state": [
+  {
+   "name": "Alabama",
+   "electionAdministrationBody": {
+    "name": "ALABAMA SECRETARY OF STATE",
+    "electionInfoUrl": "http://alabamavotes.gov",
+    "electionOfficials": [
+     {
+      "name": "CLAY HELMS",
+      "title": "ASSISTANT DIRECTOR OF ELECTIONS",
+      "officePhoneNumber": "334-242-7210",
+      "emailAddress": "ADMIN@VOTE.ALABAMA.GOV"
+     }
+    ]
+   },
+   "local_jurisdiction": {
+    "name": "MONTGOMERY",
+    "electionAdministrationBody": {
+     "name": "BOARD OF REGISTRARS",
+     "electionInfoUrl": "http://mc-ala.org/VOTERREGISTRATION",
+     "electionOfficials": [
+      {
+       "name": "GEORGE NOBLIN",
+       "title": "CHAIR",
+       "officePhoneNumber": "334-832-1215",
+       "emailAddress": "DEANNAPORATH@MC-ALA.ORG"
+      }
+     ]
+    },
+    "sources": [
+     {
+      "name": "Voting Information Project",
+      "official": true
+     }
+    ]
+   },
+   "sources": [
+    {
+     "name": "Voting Information Project",
+     "official": true
+    }
+   ]
+  }
+ ]
+}

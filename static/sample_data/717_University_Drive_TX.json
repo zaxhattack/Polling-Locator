@@ -1,0 +1,193 @@
+{
+  "kind": "civicinfo#voterInfoResponse",
+  "election": "elections Resource",
+  "otherElections": [
+    "elections Resource"
+  ],
+  "normalizedInput": {
+    "line1": "717 Univeristy Drive",
+    "city": "College Station",
+    "state": "TX",
+    "zip": "77840"
+  },
+  "pollingLocations": [
+    {
+      "id": "string",
+      "address": {
+        "locationName": "A&M CHURCH OF CHRIST",
+        "line1": "2475 Earl Rudder Freeway",
+        "city": "College Station",
+        "state": "TX",
+        "zip": "77845"
+      },
+      "notes": "string",
+      "pollingHours": "string",
+      "name": "string",
+      "voterServices": "string",
+      "startDate": "string",
+      "endDate": "string",
+      "sources": [
+        {
+          "name": "string",
+          "official": true
+        }
+      ]
+    },
+    {
+      "id": "string",
+      "address": {
+        "locationName": "BEACON BAPTIST CHURCH",
+        "line1": "2001 East Villa Maria Road",
+        "city": "Bryan",
+        "state": "TX",
+        "zip": "77802"
+      },
+      "notes": "string",
+      "pollingHours": "string",
+      "name": "string",
+      "voterServices": "string",
+      "startDate": "string",
+      "endDate": "string",
+      "sources": [
+        {
+          "name": "string",
+          "official": true
+        }
+      ]
+    },
+    {
+      "id": "string",
+      "address": {
+        "locationName": "BRYAN BALLROOM",
+        "line1": "701 Palasota Dr",
+        "city": "Bryan",
+        "state": "TX",
+        "zip": "77803"
+      },
+      "notes": "string",
+      "pollingHours": "string",
+      "name": "string",
+      "voterServices": "string",
+      "startDate": "string",
+      "endDate": "string",
+      "sources": [
+        {
+          "name": "string",
+          "official": true
+        }
+      ]
+    }
+  ],
+  "earlyVoteSites": [
+    {
+      "id": "string",
+      "address": {
+        "locationName": "BRAZOS COUNTY ELECTION ADMINISTRATION OFFICE",
+        "line1": "300 East Wm. J. Bryan Pkwy",
+        "city": "Bryan",
+        "state": "TX",
+        "zip": "77803"
+      },
+      "notes": "string",
+      "pollingHours": "string",
+      "name": "string",
+      "voterServices": "string",
+      "startDate": "string",
+      "endDate": "string",
+      "sources": [
+        {
+          "name": "string",
+          "official": true
+        }
+      ]
+    },
+    {
+      "id": "string",
+      "address": {
+        "locationName": "CS UTILITIES MEETING & TRAINING FACILITY",
+        "line1": "1603 Graham Road",
+        "city": "College Station",
+        "state": "TX",
+        "zip": "77845"
+      },
+      "notes": "string",
+      "pollingHours": "string",
+      "name": "string",
+      "voterServices": "string",
+      "startDate": "string",
+      "endDate": "string",
+      "sources": [
+        {
+          "name": "string",
+          "official": true
+        }
+      ]
+    },
+    {
+      "id": "string",
+      "address": {
+        "locationName": "MEMORIAL STUDENT CENTER (MSC)",
+        "line1": "275 Joe Routt Blvd",
+        "city": "College Station",
+        "state": "TX",
+        "zip": "77843"
+      },
+      "notes": "string",
+      "pollingHours": "string",
+      "name": "string",
+      "voterServices": "string",
+      "startDate": "string",
+      "endDate": "string",
+      "sources": [
+        {
+          "name": "string",
+          "official": true
+        }
+      ]
+    },
+    {
+      "id": "string",
+      "address": {
+        "locationName": "ARENA HALL",
+        "line1": "2906 Tabor Rd",
+        "city": "Bryan ",
+        "state": "TX",
+        "zip": "77803"
+      },
+      "notes": "string",
+      "pollingHours": "string",
+      "name": "string",
+      "voterServices": "string",
+      "startDate": "string",
+      "endDate": "string",
+      "sources": [
+        {
+          "name": "string",
+          "official": true
+        }
+      ]
+    },
+    {
+      "id": "string",
+      "address": {
+        "locationName": "GALILEE BAPTIST CHURCH",
+        "line1": "804 N Logan",
+        "city": "Bryan ",
+        "state": "TX",
+        "zip": "77803"
+      },
+      "notes": "string",
+      "pollingHours": "string",
+      "name": "string",
+      "voterServices": "string",
+      "startDate": "string",
+      "endDate": "string",
+      "sources": [
+        {
+          "name": "string",
+          "official": true
+        }
+      ]
+    }
+  ]
+}

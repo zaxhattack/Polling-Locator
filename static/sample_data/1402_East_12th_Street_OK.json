@@ -1,0 +1,80 @@
+{
+ "kind": "civicinfo#voterInfoResponse",
+ "election": {
+  "id": "4879",
+  "name": "Oklahoma Special Election",
+  "electionDay": "2019-11-12",
+  "ocdDivisionId": "ocd-division/country:us/state:ok"
+ },
+ "normalizedInput": {
+  "line1": "1402 East 12th Street",
+  "city": "Tulsa",
+  "state": "OK",
+  "zip": "74120"
+ },
+ "pollingLocations": [
+  {
+   "address": {
+    "locationName": "AMERICAN LEGION POST 1",
+    "line1": "1120 EAST 8 STREET",
+    "city": "TULSA",
+    "state": "OK",
+    "zip": "74120"
+   },
+   "notes": "",
+   "pollingHours": "7:00 AM - 7:00 PM",
+   "sources": [
+    {
+     "name": "Voting Information Project",
+     "official": true
+    }
+   ]
+  }
+ ],
+ "state": [
+  {
+   "name": "Oklahoma",
+   "electionAdministrationBody": {
+    "name": "Oklahoma State Election Board",
+    "electionInfoUrl": "http://www.ok.gov/elections",
+    "votingLocationFinderUrl": "https://services.okelections.us/voterSearch.aspx",
+    "ballotInfoUrl": "https://services.okelections.us/voterSearch.aspx",
+    "correspondenceAddress": {
+     "line1": "P.o. Box 53156",
+     "city": "Oklahoma City",
+     "state": "Oklahoma",
+     "zip": "73152-3156"
+    }
+   },
+   "local_jurisdiction": {
+    "name": "Tulsa County",
+    "electionAdministrationBody": {
+     "physicalAddress": {
+      "line1": "555 N DENVER AVE",
+      "city": "TULSA",
+      "state": "OK",
+      "zip": "74103-1008"
+     },
+     "electionOfficials": [
+      {
+       "officePhoneNumber": "(918) 596-5780",
+       "emailAddress": "TulsaCounty@elections.ok.gov"
+      }
+     ]
+    },
+    "sources": [
+     {
+      "name": "DemocracyWorks",
+      "official": false
+     }
+    ]
+   },
+   "sources": [
+    {
+     "name": "",
+     "official": false
+    }
+   ]
+  }
+ ]
+}
