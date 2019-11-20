@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
@@ -16,9 +17,12 @@
     <title>Polling Locator</title>
 </head>
 <body>
-    <div style="padding: .8125rem 1.3125rem; background-color: #f8f9fa; text-align: center">
-		<h1 style="font-weight: bold">Polling Locator</h1>
-    </div>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand mb-0 h1" href="index.html">Polling Locator</a>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="about.html">About</a>
+        </div>
+    </nav>
     <div class="container-fluid">
         <div class="row">
             <!-- Left column -->
@@ -122,7 +126,7 @@
             <!-- Right column -->
             <div class="col-lg-7 mt-3">
                 <!-- Map -->
-                <div class="border" id="mapContainer" style="height:450px"></div>
+                <div class="border" id="mapContainer"></div>
                 <!-- Polling locations list -->
                 <div class="card mt-3 mb-3">
                     <div class="card-header">
@@ -137,41 +141,6 @@
             </div>
         </div>
     </div> 
-    <!-- Footer -->
-    <footer class="page-footer font-small pt-4" style="background-color: #f8f9fa; bottom: 0; position: static; width: 100%;">
-        <!-- Footer Text -->
-        <div class="container text-center text-md-left">
-            <!-- Grid row -->
-            <div class="row">
-                <!-- Grid column -->
-                <div class="col-md-6 mt-md-0 mt-3" style="text-align: center">
-                    <!-- Content -->
-                    <h5 class="font-weight-bold">About</h5>
-                    <p>This application was developed as part of a project for CSCE 315: Programming Studio at Texas A&M University.</p>
-                </div>
-                <!-- Grid column -->
-                <hr class="clearfix w-100 d-md-none pb-3">
-                <!-- Grid column -->
-                <div class="col-md-6 mb-md-0 mb-3" style="text-align: center">
-                <!-- Content -->
-                <h5 class="font-weight-bold">APIs Used</h5>
-                        <a href="https://developers.google.com/civic-information">Google Civic</a><br>
-                        <a href="https://developer.here.com/develop/javascript-api">HereWeGo Maps</a><br>
-                        <a href="https://whoismyrepresentative.com/api">whoismyrepresentative</a><br>
-                </div>
-                <!-- Grid column -->
-            </div>
-            <!-- Grid row -->
-        </div>
-        <!-- CSCE 315 credit -->
-        <div class="footer-copyright text-center py-3"> 
-            CSCE 315: Polling Locator
-        </div>
-        <!-- CSCE credit end -->
-    </footer>
-    <!-- Footer -->
-
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
