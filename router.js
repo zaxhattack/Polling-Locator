@@ -11,22 +11,22 @@ const router = express.Router();
 
 router.get("/locations", (req, res) => {
     console.log("Received GET on /locations");
-    if(req.query.address === "717 University Drive"){
+    if(req.query.address.toLowerCase() === "717 university drive"){
     	res.json(JSON.stringify(collegeStation));
     	return;
-    }else if(req.query.address === "327 County Downs Road"){
+    }else if(req.query.address.toLowerCase() === "327 county downs road"){
     	res.json(JSON.stringify(countyDowns));
     	return;
-    }else if(req.query.address === "801 South Brookline Avenue"){
+    }else if(req.query.address.toLowerCase() === "801 south brookline avenue"){
     	res.json(JSON.stringify(brooklineAve));
     	return;
-    }else if(req.query.address === "1022 Arkansas Street"){
+    }else if(req.query.address.toLowerCase() === "1022 arkansas street"){
     	res.json(JSON.stringify(arkansasStreet));
     	return;
-    }else if(req.query.address === "1402 East 12th Street"){
+    }else if(req.query.address.toLowerCase() === "1402 east 12th street"){
     	res.json(JSON.stringify(eastStreet));
     	return;
-    }else if(req.query.address === "3913 Meredith Drive"){
+    }else if(req.query.address.toLowerCase() === "3913 meredith drive"){
     	res.json(JSON.stringify(meredithDrive));
     	return;
     }
