@@ -20,3 +20,16 @@
 .navbar-light .navbar-nav .nav-link {
 	color: #545454; 
 }
+
+a:focus, .btn:focus, .form-control:focus {
+	outline: 4px solid #0098e5;
+	outline-offset: 5px;
+}
+
+.form-control:focus {
+	background-color: #ffa !important;
+}
+
+a:focus {
+	text-decoration: underline;
+}

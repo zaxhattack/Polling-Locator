@@ -31,17 +31,17 @@ function getReps(){
         .then(() => {
             return document.getElementsByClassName("copy-rep");
         })
-        .then(items => {
-            // Add support "clicking" links or copying text with the keyboard
-            for(let i=0; i<items.length; i++){
-                items[i].addEventListener("keyup", function(e){
-                    if(e.keyCode === 13){
-                        e.preventDefault();
-                        accessibleAction(items[i]);
-                    }
-                });
-            }
-        })
+//         .then(items => {
+//             // Add support "clicking" links or copying text with the keyboard
+//             for(let i=0; i<items.length; i++){
+//                 items[i].addEventListener("keyup", function(e){
+//                     if(e.keyCode === 13){
+//                         e.preventDefault();
+//                         accessibleAction(items[i]);
+//                     }
+//                 });
+//             }
+//         })
         .catch(err => {
             alert(err);
         });
@@ -67,17 +67,17 @@ function getVotingLocations(){
     .then(() => {
         return document.getElementsByClassName("copy-loc");
     })
-    .then(items => {
-        // Add support "clicking" links or copying text with the keyboard
-        for(let i=0; i<items.length; i++){
-            items[i].addEventListener("keyup", function(e){
-                if(e.keyCode === 13){
-                    e.preventDefault();
-                    accessibleAction(items[i]);
-                }
-            });
-        }
-    })
+//     .then(items => {
+//         // Add support "clicking" links or copying text with the keyboard
+//         for(let i=0; i<items.length; i++){
+//             items[i].addEventListener("keyup", function(e){
+//                 if(e.keyCode === 13){
+//                     e.preventDefault();
+//                     accessibleAction(items[i]);
+//                 }
+//             });
+//         }
+//     })
     .catch(err => {
         alert(err);
     });
@@ -115,7 +115,7 @@ function populateRepresentatives(data){
         singleRep.innerHTML = `
         <h5 class="card-title mb-0">${repName}</h5>
         <p class="mb-0">${item.party}</p>
-        <p class="mb-0 copy-rep" tabindex="0">${item.phone}</p>
+        <p class="mb-0 copy-rep">${item.phone}</p>
         <a class="card-text btn btn-secondary btn-sm" href="${item.link}" target="_blank">Website</a>`;
         
         container.appendChild(singleRep);
@@ -152,13 +152,14 @@ function populateVotingLocations(data){
     }
     
     // Add the address the user entered onto the map
-    addLocationToMap(jsonData.normalizedInput, true, false);
+    let homeAddress = jsonData.normalizedInput;
+    addLocationToMap(homeAddress, true, false);
     
     if(jsonData.hasOwnProperty("earlyVoteSites")){
         let earlyVotingLocations = jsonData.earlyVoteSites;
         // Add each early voting location to the list and map
         earlyVotingLocations.forEach((item) => {
-            addLocationToList(container, item, true);
+            addLocationToList(container, item, true, homeAddress);
             addLocationToMap(item, false);
         });
     }
@@ -167,21 +168,25 @@ function populateVotingLocations(data){
         let votingLocations = jsonData.pollingLocations;
         // Add each standard voting location to the list and map
         votingLocations.forEach((item, index) => {
-            addLocationToList(container, item);
+            addLocationToList(container, item, false, homeAddress);
             addLocationToMap(item, false, index===votingLocations.length-1);
         });
     }
 }
 
-function addLocationToList(parent, item, isEarlyVoting){
+function addLocationToList(parent, item, isEarlyVoting, homeAddress){
     let singleLocation = document.createElement("li");
     singleLocation.classList.add("list-group-item");
-    let address = item.address.line1 + ", " + item.address.city + ", " + item.address.state + ", " + item.address.zip;
+    let address = `${item.address.line1}, ${item.address.city}, ${item.address.state}, ${item.address.zip}`;
     
     singleLocation.innerHTML = `<h5 class="card-title mb-0">${item.address.locationName}</h5>`;
     if(isEarlyVoting)
         singleLocation.innerHTML += "<p class='mb-0 font-italic'>Early Voting Location</p>";
-    singleLocation.innerHTML += `<p class="card-text copy-loc" tabindex="0"><a href="https://wego.here.com/search/${encodeURIComponent(address)}" target="_blank">${address}</a></p>`;
+    let sourceLoc = `${homeAddress.line1}, ${homeAddress.city}, ${homeAddress.state}, ${homeAddress.zip}`.replace(" ", "-");
+    let destLoc = address.replace(" ", "-");
+    singleLocation.innerHTML += `
+    <p class="copy-loc mb-0">${address}</p>
+    <a class="card-text btn btn-secondary btn-sm" href="https://wego.here.com/directions/mix/${sourceLoc}/${destLoc}" target="_blank">Directions</a>`;
     
     parent.appendChild(singleLocation);
 }
