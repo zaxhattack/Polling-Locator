@@ -116,7 +116,7 @@ function populateRepresentatives(data){
         <h5 class="card-title mb-0">${repName}</h5>
         <p class="mb-0">${item.party}</p>
         <p class="mb-0 copy-rep" tabindex="0">${item.phone}</p>
-        <p class="card-text copy-rep" tabindex="0"><a class="card-text" href="${item.link}" target="_blank">${item.link}</a></p>`;
+        <a class="card-text btn btn-secondary btn-sm" href="${item.link}" target="_blank">Website</a>`;
         
         container.appendChild(singleRep);
     });

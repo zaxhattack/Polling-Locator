@@ -1,3 +1,22 @@
 #mapContainer {
 	height: 450px;
 }
+
+.H_ib_content {
+	min-width: 12em;
+}
+
+/* Accessible Colors */
+.btn-primary {
+	background-color: #0056B3;
+	border-color: #0056B3;
+}
+
+.btn-secondary {
+	background-color: #51595d;
+	border-color: #51595d;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: #545454; 
+}
