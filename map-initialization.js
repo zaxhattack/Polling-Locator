@@ -1,3 +1,4 @@
+
 var platform = new H.service.Platform({
     "apikey": "I0KCsQtInGfK_nPgBYkIrBs3zrSrMWqr4jDyHCYfqhI"
 });
@@ -36,3 +37,33 @@ votingLocGroup.addEventListener("tap", (evt) => {
 });
 
 map.addObject(votingLocGroup);
+
+// userMarker group will only ever hold 1 marker
+var userMarker = new H.map.Group();
+map.addObject(userMarker);
+
+// get lattitude and longitude from user click by using Here maps API
+function setUpClickListener(map) {
+    map.addEventListener('tap', function (evt) {
+        var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+        let latitude = coord.lat.toFixed(4);
+        let longitude = coord.lng.toFixed(4);
+
+        // if no markers, place marker
+        if (userMarker.getObjects().length === 0) {
+            addMarkerToMap(latitude, longitude);
+        }
+        else { // There exists a marker, so we remove it before adding the new marker
+            userMarker.removeAll();
+            addMarkerToMap(latitude, longitude);
+        }
+      });
+}
+
+// helper function to plot markers on map by adding the marker to the userMarker group
+function addMarkerToMap( latitude, longitude) {
+    let marker = new H.map.Marker( {lat: latitude, lng: longitude} );
+    userMarker.addObject(marker);
+}
+
+setUpClickListener(map);
