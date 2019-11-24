@@ -29,7 +29,9 @@ votingLocGroup.addEventListener("tap", (evt) => {
 
     let bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {content: evt.target.getData()});
     ui.addBubble(bubble);
-
+    
+    map.setCenter(evt.target.getGeometry());
+    
     bubble.open();
 });
 
