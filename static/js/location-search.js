@@ -31,17 +31,6 @@ function getReps(){
         .then(() => {
             return document.getElementsByClassName("copy-rep");
         })
-//         .then(items => {
-//             // Add support "clicking" links or copying text with the keyboard
-//             for(let i=0; i<items.length; i++){
-//                 items[i].addEventListener("keyup", function(e){
-//                     if(e.keyCode === 13){
-//                         e.preventDefault();
-//                         accessibleAction(items[i]);
-//                     }
-//                 });
-//             }
-//         })
         .catch(err => {
             alert(err);
         });
@@ -67,17 +56,6 @@ function getVotingLocations(){
     .then(() => {
         return document.getElementsByClassName("copy-loc");
     })
-//     .then(items => {
-//         // Add support "clicking" links or copying text with the keyboard
-//         for(let i=0; i<items.length; i++){
-//             items[i].addEventListener("keyup", function(e){
-//                 if(e.keyCode === 13){
-//                     e.preventDefault();
-//                     accessibleAction(items[i]);
-//                 }
-//             });
-//         }
-//     })
     .catch(err => {
         alert(err);
     });
