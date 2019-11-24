@@ -113,7 +113,7 @@ function populateRepresentatives(data){
             repName = `Rep. ${item.name}`;
         
         singleRep.innerHTML = `
-        <h5 class="card-title mb-0">${repName}</h5>
+        <h6 class="card-title mb-0">${repName}</h6>
         <p class="mb-0">${item.party}</p>
         <p class="mb-0 copy-rep">${item.phone}</p>
         <a class="card-text btn btn-secondary btn-sm" href="${item.link}" target="_blank">Website</a>`;
@@ -179,7 +179,7 @@ function addLocationToList(parent, item, isEarlyVoting, homeAddress){
     singleLocation.classList.add("list-group-item");
     let address = `${item.address.line1}, ${item.address.city}, ${item.address.state}, ${item.address.zip}`;
     
-    singleLocation.innerHTML = `<h5 class="card-title mb-0">${item.address.locationName}</h5>`;
+    singleLocation.innerHTML = `<h6 class="card-title mb-0">${item.address.locationName}</h6>`;
     if(isEarlyVoting)
         singleLocation.innerHTML += "<p class='mb-0 font-italic'>Early Voting Location</p>";
     let sourceLoc = `${homeAddress.line1}, ${homeAddress.city}, ${homeAddress.state}, ${homeAddress.zip}`.replace(" ", "-");
