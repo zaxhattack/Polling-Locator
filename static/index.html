@@ -3,22 +3,30 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css">
+    <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-    <title>Poll Locator</title>
+    <title>Polling Locator</title>
 </head>
 <body>
     <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">Polling Locator</span>
+        <a class="navbar-brand mb-0 h1" href="index.html">Polling Locator</a>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="about.html">About</a>
+        </div>
     </nav>
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         <div class="row">
             <!-- Left column -->
-            <div class="col-lg-5 mt-3">
+            <div class="col-lg-5">
                 <!-- Address form -->
                 <form class="border rounded shadow p-3"id="locationForm" novalidate>
                     <h5>Enter Address</h5>
@@ -104,9 +112,9 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form> <!-- End address form -->
                 <!-- Representative list -->
-                <div class="card mt-3">
+                <div class="card mt-3 mb-3">
                     <div class="card-header">
-                        Representatives
+                        <h5 class="mb-0">Representatives</h5>
                     </div>
                     <ul class="list-group list-group-flush" id="representatives-container">
                         <li class="list-group-item">
@@ -116,13 +124,13 @@
                 </div> <!-- End representatives -->
             </div>
             <!-- Right column -->
-            <div class="col-lg-7 mt-3">
+            <div class="col-lg-7">
                 <!-- Map -->
-                <div class="border" id="mapContainer" style="height:450px"></div>
+                <div class="border" id="mapContainer"></div>
                 <!-- Polling locations list -->
                 <div class="card mt-3 mb-3">
                     <div class="card-header">
-                        Polling Locations
+                        <h5 class="mb-0">Polling Locations</h5>
                     </div>
                     <ul class="list-group list-group-flush" id="locations-container">
                         <li class="list-group-item">
@@ -133,43 +141,6 @@
             </div>
         </div>
     </div> 
-    <!-- Footer -->
-    <footer class="page-footer font-small pt-4" style="background-color: lightgrey; bottom: 0; position: static; width: 100%;">
-        <!-- Footer Text -->
-        <div class="container text-center text-md-left">
-            <!-- Grid row -->
-            <div class="row">
-                <!-- Grid column -->
-                <div class="col-md-6 mt-md-0 mt-3">
-                    <!-- Content -->
-                    <h5 class="text-uppercase font-weight-bold">About</h5>
-                    <p>This website was made as a project for CSCE 315 at Texas A&M</p>
-                </div>
-                <!-- Grid column -->
-                <hr class="clearfix w-100 d-md-none pb-3">
-                <!-- Grid column -->
-                <div class="col-md-6 mb-md-0 mb-3">
-                <!-- Content -->
-                <h5 class="text-uppercase font-weight-bold">API's Used</h5>
-                    <ul>
-                        <li> <a href="https://developers.google.com/civic-information">Google Civic</a></li>
-                        <li> <a href="https://developer.here.com/develop/javascript-api">HereWeGo Maps</a></li>
-                        <li> <a href="https://whoismyrepresentative.com/api">whoismyrepresentative</a></li>
-                    </ul>
-                </div>
-                <!-- Grid column -->
-            </div>
-            <!-- Grid row -->
-        </div>
-        <!-- CSCE 315 credit -->
-        <div class="footer-copyright text-center py-3"> 
-            CSCE 315: Polling Locator
-        </div>
-        <!-- CSCE credit end -->
-    </footer>
-    <!-- Footer -->
-
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
