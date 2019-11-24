@@ -37,6 +37,11 @@ a:focus {
 @media (prefers-color-scheme: dark) {
 	body {
 		background-color: #282b30;
+		color: #ccc;
+	}
+	
+	a {
+		color: #80BDFF;
 	}
 	
 	.bg-light {
