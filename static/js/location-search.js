@@ -158,9 +158,10 @@ function populateVotingLocations(data){
     if(jsonData.hasOwnProperty("earlyVoteSites")){
         let earlyVotingLocations = jsonData.earlyVoteSites;
         // Add each early voting location to the list and map
-        earlyVotingLocations.forEach((item) => {
-            addLocationToList(container, item, true, homeAddress);
-            addLocationToMap(item, false);
+        earlyVotingLocations.forEach((item, index) => {
+            let locId = (index+1).toString()+"E";
+            addLocationToList(container, item, locId, true, homeAddress);
+            addLocationToMap(item, false, false, locId);
         });
     }
     
@@ -168,18 +169,21 @@ function populateVotingLocations(data){
         let votingLocations = jsonData.pollingLocations;
         // Add each standard voting location to the list and map
         votingLocations.forEach((item, index) => {
-            addLocationToList(container, item, false, homeAddress);
-            addLocationToMap(item, false, index===votingLocations.length-1);
+            let locId = (index+1).toString()+"S";
+            addLocationToList(container, item, locId, false, homeAddress);
+            addLocationToMap(item, false, index===votingLocations.length-1, locId);
         });
     }
+    
+    
 }
 
-function addLocationToList(parent, item, isEarlyVoting, homeAddress){
+function addLocationToList(parent, item, id, isEarlyVoting, homeAddress){
     let singleLocation = document.createElement("li");
     singleLocation.classList.add("list-group-item");
     let address = `${item.address.line1}, ${item.address.city}, ${item.address.state}, ${item.address.zip}`;
     
-    singleLocation.innerHTML = `<h6 class="card-title mb-0">${item.address.locationName}</h6>`;
+    singleLocation.innerHTML = `<h6 class="card-title mb-0">${id}) ${item.address.locationName}</h6>`;
     if(isEarlyVoting)
         singleLocation.innerHTML += "<p class='mb-0 font-italic'>Early Voting Location</p>";
     let sourceLoc = `${homeAddress.line1}, ${homeAddress.city}, ${homeAddress.state}, ${homeAddress.zip}`.replace(" ", "-");
@@ -191,7 +195,7 @@ function addLocationToList(parent, item, isEarlyVoting, homeAddress){
     parent.appendChild(singleLocation);
 }
 
-function addLocationToMap(item, isHome, updateCenter){
+function addLocationToMap(item, isHome, updateCenter, locId){
     let geocoder = window.platform.getGeocodingService();
     let searchTxt;
     
@@ -212,11 +216,11 @@ function addLocationToMap(item, isHome, updateCenter){
             else
                 name = `${item.address.locationName}`;
             // Passes coordinates to add location to map
-            addToMap(response, name, isHome, updateCenter);
+            addToMap(response, name, isHome, updateCenter, locId);
     });
 }
 
-function addToMap(result, name, isHome, updateCenter){
+function addToMap(result, name, isHome, updateCenter, locId){
     let locations = result.response.view[0].result;
     for(let i=0; i<locations.length; i++){
         let position = {
@@ -227,6 +231,8 @@ function addToMap(result, name, isHome, updateCenter){
         marker.setData(`<b>${name}</b><div>${locations[0].location.address.label}</div>`);
         if(isHome){  
             marker.setIcon(window.homeIcon);
+        }else{
+            marker.setIcon(new H.map.Icon(`https://chart.apis.google.com/chart?chst=d_map_spin&chld=1|0|59b3b1|16|b|${locId}`));
         }
         window.votingLocGroup.addObject(marker);
     }
