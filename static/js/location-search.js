@@ -91,9 +91,9 @@ function populateRepresentatives(data){
             repName = `Rep. ${item.name}`;
         
         singleRep.innerHTML = `
-        <h6 class="card-title mb-0">${repName}</h6>
+        <h6 class="card-title mb-0 font-weight-bold">${repName}</h6>
         <p class="mb-0">${item.party}</p>
-        <p class="mb-0 copy-rep">${item.phone}</p>
+        <p class="mb-0">${item.phone}</p>
         <a class="card-text btn btn-secondary btn-sm" href="${item.link}" target="_blank">Website</a>`;
         
         container.appendChild(singleRep);
@@ -161,13 +161,13 @@ function addLocationToList(parent, item, id, isEarlyVoting, homeAddress){
     singleLocation.classList.add("list-group-item");
     let address = `${item.address.line1}, ${item.address.city}, ${item.address.state}, ${item.address.zip}`;
     
-    singleLocation.innerHTML = `<h6 class="card-title mb-0">${id}) ${item.address.locationName}</h6>`;
+    singleLocation.innerHTML = `<h6 class="card-title mb-0 font-weight-bold">${id}) ${item.address.locationName}</h6>`;
     if(isEarlyVoting)
         singleLocation.innerHTML += "<p class='mb-0 font-italic'>Early Voting Location</p>";
     let sourceLoc = `${homeAddress.line1}, ${homeAddress.city}, ${homeAddress.state}, ${homeAddress.zip}`.replace(" ", "-");
     let destLoc = address.replace(" ", "-");
     singleLocation.innerHTML += `
-    <p class="copy-loc mb-0">${address}</p>
+    <p class="mb-0">${address}</p>
     <a class="card-text btn btn-secondary btn-sm" href="https://wego.here.com/directions/mix/${sourceLoc}/${destLoc}" target="_blank">Directions</a>`;
     
     parent.appendChild(singleLocation);
