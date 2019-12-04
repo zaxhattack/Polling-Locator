@@ -92,7 +92,12 @@ function populateRepresentatives(data){
         
         singleRep.innerHTML = `
         <h6 class="card-title mb-0 font-weight-bold">${repName}</h6>
-        <p class="mb-0">${item.party}</p>
+        <p class="mb-0">${item.party}</p>`;
+        
+        if(index < reps.length-2)
+            singleRep.innerHTML += `<p class="mb-0">District ${item.district}</p>`;
+        
+        singleRep.innerHTML += `
         <p class="mb-0">${item.phone}</p>
         <a class="card-text btn btn-secondary btn-sm" href="${item.link}" target="_blank">Website</a>`;
         
