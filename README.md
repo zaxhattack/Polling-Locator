@@ -1,5 +1,8 @@
+---ALL Credit goes to my entire CSCE 315 group: Scott Wilkins, Emma Lee, Miguel Sorto, and myself---
+
 # CSCE 315 - Polling Locator
 Polling Locator provides a simple way of locating polling locations for upcoming government elections.
+
 
 ### Locally Testing
 [Download and install Node.js](https://nodejs.org/en/). We're using the current version of the LTS (12.13.0).
